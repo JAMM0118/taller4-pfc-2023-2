@@ -31,11 +31,12 @@ object implAlgoritmos {
 
 
   def multMatriz(m1: Matriz, m2: Matriz): Matriz = {
-      //calculo usando prodPunto y la transpuesta
-      val l=m1.length
-      Vector.tabulate(l, l)((i, j) => prodPunto(m1(i), transpuesta(m2)(j)))
+    val l1 = m1.length //Numero de filas
+    val l2 = m2.head.length //Numero de columnas en el vector
+    val m2t = transpuesta(m2)
+    val m3: Matriz = Vector.tabulate(l1, l2)((i, j) => prodPunto(m1(i), m2t(j)))
+    m3
   }
-
 
   def multMatrizPar(m1: Matriz, m2: Matriz): Matriz = {
     val filasM1 = m1.length
@@ -62,6 +63,56 @@ object implAlgoritmos {
     val resultados = tareas.map(_.toInt).toVector
     resultados.grouped(m1.length).toVector
    }
+
+  def multMatrizParV2(m1: Matriz, m2: Matriz): Matriz = {
+    // calcular la multipliacion de forma paralela con otro enfoque, dividir en 4 partes y mandar 4 tareas 
+    
+    def bloquesTarea (bloqueM1: Matriz, transpuesta: Matriz): Matriz = {
+       multMatriz(bloqueM1, transpuesta)
+    }
+
+    def partirMatrizPorMitad(matriz: Matriz): (Matriz, Matriz) = {
+      val mitadFilas = matriz.length / 2
+      val (primeraMitad, segundaMitad) = matriz.splitAt(mitadFilas)
+      (primeraMitad, segundaMitad)
+    }
+
+    // val filasM1 = m1.length
+    // val columnasM2 = m2(0).length
+    val tamanoMatrices = m1.length
+    val mitadTamano = tamanoMatrices / 2
+
+
+    if (m1.length == 1){
+      val l=m1.length
+      Vector.tabulate(l, l)((i, j) => prodPunto(m1(i), transpuesta(m2)(j)))
+
+    } else if (m1.length == 2) {
+      // una tarea para la primera fila y otra para la segunda fila
+      val resultado = parallel((prodPunto(m1(0), transpuesta(m2)(0)), prodPunto(m1(0), transpuesta(m2)(1)))
+      ,(prodPunto(m1(1), transpuesta(m2)(0)), prodPunto(m1(1), transpuesta(m2)(1))))
+
+       (Vector(Vector(resultado._1._1, resultado._1._2), Vector(resultado._2._1, resultado._2._2)))
+    } else if (m1.length == 4){
+      // el tamaño 4 sigue siendo un caso especial, 4 vectores que tienen que ser multiplicados, 4 tareas o 2??
+      // modelo de 2 tareas 
+      //val matriz2Transpuesta = transpuesta(m2)
+
+      val matrizSeparada = partirMatrizPorMitad(m1)
+      val par = parallel(bloquesTarea(matrizSeparada._1, m2), bloquesTarea(matrizSeparada._2, m2))
+      (par._1 ++ par._2)
+    
+    } else {
+      // dividir en 4 partes y mandar 4 tareas
+      val matrizEn2 = partirMatrizPorMitad(m1)
+      val matriz4Partes = (partirMatrizPorMitad(matrizEn2._1), partirMatrizPorMitad(matrizEn2._2))
+      val par = parallel(bloquesTarea(matriz4Partes._1._1, m2), bloquesTarea(matriz4Partes._1._2, m2), 
+      bloquesTarea(matriz4Partes._2._1, m2), bloquesTarea(matriz4Partes._2._2, m2))
+      (par._1 ++ par._2 ++ par._3 ++ par._4)
+    }
+    
+  }
+    
 
   def sumMatriz(m1: Matriz, m2: Matriz): Matriz = {
     val l=m1.length
