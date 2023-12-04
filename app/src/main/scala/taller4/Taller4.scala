@@ -23,52 +23,52 @@ object Taller4{
   // PRUEBAS DE RENDIMIENTOS
   def main(args: Array[String]): Unit = {
 
-    val tamanomatriz = 8
+    // val tamanomatriz = 8
 
-    val promedioParv2 = (1 to 100).map(_ => 0.0).toArray
-    for (i <- 0 until 100) {
-      val m1 = matrizAlAzar(tamanomatriz, 2)
-      val m2 = matrizAlAzar(tamanomatriz, 2)
-      val time = withWarmer(new Warmer.Default) measure {
-        multMatrizParV2(m1, m2)
-      }
-      promedioParv2(i) = time.value
-      println(" Repetición " + i + " tiempo: " + time)
-    }
+    // val promedioParv2 = (1 to 100).map(_ => 0.0).toArray
+    // for (i <- 0 until 100) {
+    //   val m1 = matrizAlAzar(tamanomatriz, 2)
+    //   val m2 = matrizAlAzar(tamanomatriz, 2)
+    //   val time = withWarmer(new Warmer.Default) measure {
+    //     multMatrizParV2(m1, m2)
+    //   }
+    //   promedioParv2(i) = time.value
+    //   println(" Repetición " + i + " tiempo: " + time)
+    // }
 
-    val promedioParv1 = (1 to 100).map(_ => 0.0).toArray
-    for (i <- 0 until 100) {
-      val m1 = matrizAlAzar(tamanomatriz, 2)
-      val m2 = matrizAlAzar(tamanomatriz, 2)
-      val time = withWarmer(new Warmer.Default) measure {
-        multMatrizPar(m1, m2)
-      }
-      promedioParv1(i) = time.value
-      println(" Repetición " + i + " tiempo: " + time)
-    }
+    // val promedioParv1 = (1 to 100).map(_ => 0.0).toArray
+    // for (i <- 0 until 100) {
+    //   val m1 = matrizAlAzar(tamanomatriz, 2)
+    //   val m2 = matrizAlAzar(tamanomatriz, 2)
+    //   val time = withWarmer(new Warmer.Default) measure {
+    //     multMatrizPar(m1, m2)
+    //   }
+    //   promedioParv1(i) = time.value
+    //   println(" Repetición " + i + " tiempo: " + time)
+    // }
 
-    val promedioSeq = (1 to 100).map(_ => 0.0).toArray
-    for (i <- 0 until 100) {
-      val m1 = matrizAlAzar(tamanomatriz, 2)
-      val m2 = matrizAlAzar(tamanomatriz, 2)
-      val time = withWarmer(new Warmer.Default) measure {
-        multMatriz(m1, m2)
-      }
-      promedioSeq(i) = time.value
-      println(" Repetición " + i + " tiempo: " + time)
-    }
+    // val promedioSeq = (1 to 100).map(_ => 0.0).toArray
+    // for (i <- 0 until 100) {
+    //   val m1 = matrizAlAzar(tamanomatriz, 2)
+    //   val m2 = matrizAlAzar(tamanomatriz, 2)
+    //   val time = withWarmer(new Warmer.Default) measure {
+    //     multMatriz(m1, m2)
+    //   }
+    //   promedioSeq(i) = time.value
+    //   println(" Repetición " + i + " tiempo: " + time)
+    // }
 
 
-    val promedioSeqRec = (1 to 100).map(_ => 0.0).toArray
-    for (i <- 0 until 100) {
-      val m1 = matrizAlAzar(tamanomatriz, 2)
-      val m2 = matrizAlAzar(tamanomatriz, 2)
-      val time = withWarmer(new Warmer.Default) measure {
-        multMatrizRec(m1, m2)
-      }
-      promedioSeqRec(i) = time.value
-      println(" Repetición " + i + " tiempo: " + time)
-    }
+    // val promedioSeqRec = (1 to 100).map(_ => 0.0).toArray
+    // for (i <- 0 until 100) {
+    //   val m1 = matrizAlAzar(tamanomatriz, 2)
+    //   val m2 = matrizAlAzar(tamanomatriz, 2)
+    //   val time = withWarmer(new Warmer.Default) measure {
+    //     multMatrizRec(m1, m2)
+    //   }
+    //   promedioSeqRec(i) = time.value
+    //   println(" Repetición " + i + " tiempo: " + time)
+    // }
 
     // val promedioRecPar = (1 to 100).map(_ => 0.0).toArray
     // for (i <- 0 until 100) {
@@ -82,35 +82,35 @@ object Taller4{
     // }
 
 
-      val promedioStrassen = (1 to 100).map(_ => 0.0).toArray
-      for (i <- 0 until 100) {
-        val m1 = matrizAlAzar(tamanomatriz, 2)
-        val m2 = matrizAlAzar(tamanomatriz, 2)
-        val time = withWarmer(new Warmer.Default) measure {
-          strassen(m1, m2)
-        }
-        promedioStrassen(i) = time.value
-        println(" Repetición " + i + " tiempo: " + time)
-      }
+    //   val promedioStrassen = (1 to 100).map(_ => 0.0).toArray
+    //   for (i <- 0 until 100) {
+    //     val m1 = matrizAlAzar(tamanomatriz, 2)
+    //     val m2 = matrizAlAzar(tamanomatriz, 2)
+    //     val time = withWarmer(new Warmer.Default) measure {
+    //       strassen(m1, m2)
+    //     }
+    //     promedioStrassen(i) = time.value
+    //     println(" Repetición " + i + " tiempo: " + time)
+    //   }
 
-      val promedioStrassenPar = (1 to 100).map(_ => 0.0).toArray
-      for (i <- 0 until 100) {
-        val m1 = matrizAlAzar(tamanomatriz, 2)
-        val m2 = matrizAlAzar(tamanomatriz, 2)
-        val time = withWarmer(new Warmer.Default) measure {
-          strassenParallel(m1, m2)
-        }
-        promedioStrassenPar(i) = time.value
-        println(" Repetición " + i + " tiempo: " + time)
-      }
+    //   val promedioStrassenPar = (1 to 100).map(_ => 0.0).toArray
+    //   for (i <- 0 until 100) {
+    //     val m1 = matrizAlAzar(tamanomatriz, 2)
+    //     val m2 = matrizAlAzar(tamanomatriz, 2)
+    //     val time = withWarmer(new Warmer.Default) measure {
+    //       strassenParallel(m1, m2)
+    //     }
+    //     promedioStrassenPar(i) = time.value
+    //     println(" Repetición " + i + " tiempo: " + time)
+    //   }
 
-    println("El promedio secuencial es: " + promedioSeq.sum / 100 + " ms")
-    println("El promedio paralelo 1 es: " + promedioParv1.sum / 100 + " ms")
-    println("El promedio paralelo 2 es: " + promedioParv2.sum / 100 + " ms")
-    println("El promedio recursivo es: " + promedioSeqRec.sum / 100 + " ms")
-    // println("El promedio recursivo paralelo es: " + promedioRecPar.sum / 100 + " ms")
-    println("El promedio Strassen es: " + promedioStrassen.sum / 100 + " ms")
-    println("El promedio Strassen paralelo es: " + promedioStrassenPar.sum / 100 + " ms")
+    // println("El promedio secuencial es: " + promedioSeq.sum / 100 + " ms")
+    // println("El promedio paralelo 1 es: " + promedioParv1.sum / 100 + " ms")
+    // println("El promedio paralelo 2 es: " + promedioParv2.sum / 100 + " ms")
+    // println("El promedio recursivo es: " + promedioSeqRec.sum / 100 + " ms")
+    // // println("El promedio recursivo paralelo es: " + promedioRecPar.sum / 100 + " ms")
+    // println("El promedio Strassen es: " + promedioStrassen.sum / 100 + " ms")
+    // println("El promedio Strassen paralelo es: " + promedioStrassenPar.sum / 100 + " ms")
 
 
 
@@ -120,9 +120,9 @@ object Taller4{
 
 
 
-    // val m1 = Vector(Vector(3, 2, 0), Vector(6, 7, 8), Vector(1, 9, 2))
+    // val m1 = Vector(Vector(3, 2, 0, 2), Vector(6, 7, 8, 5), Vector(1, 9, 2, 18), Vector(4, 5, 6, 7))
 
-    // val m2 = Vector(Vector(3, 2, 9), Vector(5, 2, 4), Vector(5, 6, 5))
+    // val m2 = Vector(Vector(3, 2, 9 , 5), Vector(5, 2, 4, 9), Vector(5, 6, 5, 12), Vector(4, 5, 6, 7))
     // println("Resultado secuencial:")
     // println(multMatriz(m1, m2))
 
@@ -131,6 +131,25 @@ object Taller4{
 
     // println("resultado recursivo paralelo:")
     // println(multMatrizRecPar(m1, m2))
+
+    // println("resultado paralelo 2:")
+    // println(multMatrizParV2(m1, m2))
+
+
+    val v1 = vectorAlAzar(10000, 2)
+    val v2 = vectorAlAzar(10000, 2)
+    println("Vector 1: ")
+    println(v1)
+    println("Vector 2: ")
+    println(v2)
+    println("Producto punto secuencial: ")
+    println(prodPunto(v1, v2))
+    println("producto punto paralelo: ")
+    println(prodPuntoParD(v1, v2))
+
+
+
+
   }
 
  }
