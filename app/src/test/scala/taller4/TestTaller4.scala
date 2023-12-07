@@ -26,13 +26,11 @@ class TestTaller4 extends AnyFunSuite {
 
     test("Prueba de resultados de las diferentes implementaciones para multiplicar matrices"){
         assert(obj.multMatriz(A,B) == C)
-        assert(obj2.strassenParallel(A,B) == C )
-        assert(obj.multMatriz(A,B) == C)
-        assert(obj2.multMatrizParV2(A,B) == C)
-        assert(obj2.strassenParallel(A,B) == C)
-        assert(obj.multMatriz(A,B) == C)
-        assert(obj2.multMatrizParV2(A,B) == C)
+        assert(obj2.multMatrizPar(A,B) == C)
+        assert(obj.multMatrizRec(A,B) == C)
         assert(obj2.multMatrizRecParallel(A,B) == C)
+        assert(obj.strassen(A,B) == C)
+        assert(obj2.strassenParallel(A,B) == C )
     }
 
     test("Prueba de la multiplicación de matrices recursiva secuencial vs recursiva paralelo") { 
@@ -62,7 +60,7 @@ class TestTaller4 extends AnyFunSuite {
             i <- 1 to 10
             m1 = obj.matrizAlAzar(math.pow(2, i).toInt, 2)
             m2 = obj.matrizAlAzar(math.pow(2, i).toInt, 2)
-        } yield (obj3.compararAlgoritmos(obj.multMatriz, obj2.multMatrizParV2)(m1, m2), math.pow(2, i).toInt)
+        } yield (obj3.compararAlgoritmos(obj.multMatriz, obj2.multMatrizPar)(m1, m2), math.pow(2, i).toInt)
         println(prueba)
     }
 

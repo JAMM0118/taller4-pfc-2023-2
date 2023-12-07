@@ -13,7 +13,7 @@ class implAlgoritmosParallel{
       resultadoParalelo
     }
 
-    def multMatrizParV2(m1: Matriz, m2: Matriz): Matriz ={
+    def multMatrizPar(m1: Matriz, m2: Matriz): Matriz ={
     
     def bloquesTarea (bloqueM1: Matriz, transpuesta: Matriz): Matriz = {
        obj.multMatriz(bloqueM1, transpuesta)

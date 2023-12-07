@@ -18,14 +18,7 @@ object Taller4{
 
 
   def main(args: Array[String]): Unit = {
-    // for(i <- 1  to 7){
-    //         println(obj3.desempenoDeFuncionesSecuenciales(math.pow(2,i).toInt))
-    //     }
-    val obj3 = new Benchmark()
-      for(i <- 1  to 7){
-            println(obj3.desempenoDeFuncionesSecuenciales(math.pow(2,i).toInt))
-        }
-
+    saludo()
   }
 
  }

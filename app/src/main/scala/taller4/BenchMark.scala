@@ -51,7 +51,7 @@ class Benchmark {
     val tiemposSeqPar = (1 to 100).map(_ => 0.0).toArray
     for (i <- 0 until 100) {
       val time = withWarmer(new Warmer.Default) measure {
-        obj2.multMatrizParV2(m1, m2)
+        obj2.multMatrizPar(m1, m2)
       }
       tiemposSeqPar(i) = time.value
     }
@@ -130,7 +130,7 @@ class Benchmark {
     val tiemposParallel = (1 to 100).map(_ => 0.0).toArray
     for (i <- 0 until 100) {
       val time = withWarmer(new Warmer.Default) measure {
-        obj2.multMatrizParV2(m1, m2)
+        obj2.multMatrizPar(m1, m2)
       }
       tiemposParallel(i) = time.value
     }
