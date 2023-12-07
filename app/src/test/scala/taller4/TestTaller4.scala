@@ -64,29 +64,36 @@ class TestTaller4 extends AnyFunSuite {
         println(prueba)
     }
 
+    test("Prueba de los productos punto secuencial vs paralelo") { 
+        println("Comparación de algoritmos")
+        val prueba = for {
+            i <- 1 to 10
+        } yield (obj3.compararProdPunto(i))
+        println(prueba)
+    }
 
     test("Prueba con todos los algoritmos con un tamaño especifico de matriz"){
-        println("Comparación de algoritmos con un tamaño especifico de matriz  ")
+        println("Desempeño de algoritmos con un tamaño especifico de matriz  ")
         for (i <- 1 to 10) {
             println(obj3.desempenoDeFunciones(math.pow(2, i).toInt))
         }
     }
     test("Prueba del productos punto secuencial vs producto punto con paralelismo de datos"){
-        println("Comparación de productos punto")
+        println("Desempeño de productos punto")
         for (i <- 1 to 10) {
             println(obj3.desempenoProdPunto(math.pow(10, i).toInt, i))
         }
     }
 
     test("Prueba de todos los algorimos secuenciales"){
-        println("Comparacion de algoritmos secuenciales")
+        println("Desempeño de algoritmos secuenciales")
         for(i <- 1  to 10){
             println(obj3.desempenoDeFuncionesSecuenciales(math.pow(2,i).toInt))
         }
     }
 
     test("Prueba de todos los algorimos paralelos"){
-        println("Comparacion de algoritmos paralelos")
+        println("Desempeño de algoritmos paralelos")
         for(i <- 1  to 10){
             println(obj3.desempenoDeFuncionesParalelas(math.pow(2,i).toInt))
         }
