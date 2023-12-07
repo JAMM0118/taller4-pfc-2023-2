@@ -85,14 +85,14 @@ class TestTaller4 extends AnyFunSuite {
         }
     }
 
-    test("Prueba de todos los algorimos secuenciales"){
+    test("Prueba de todos los algoritmos secuenciales"){
         println("Desempeño de algoritmos secuenciales")
         for(i <- 1  to 10){
             println(obj3.desempenoDeFuncionesSecuenciales(math.pow(2,i).toInt))
         }
     }
 
-    test("Prueba de todos los algorimos paralelos"){
+    test("Prueba de todos los algoritmos paralelos"){
         println("Desempeño de algoritmos paralelos")
         for(i <- 1  to 10){
             println(obj3.desempenoDeFuncionesParalelas(math.pow(2,i).toInt))
